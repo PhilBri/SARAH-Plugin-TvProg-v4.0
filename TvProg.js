@@ -1,4 +1,4 @@
-
+// Functions
 function writeXml (xmlClbk) {
     var fs = require('fs'),
         file = __dirname + '\\' + 'TvProg.xml',
@@ -37,6 +37,16 @@ function sendEpg (epgData, sendClbk) {
     });
 }
 
+// Plugin
+var sock;
+exports.init = function () {
+    info('[ TvProg ] is initializing ...');
+}
+
+exports.dispose = function () {
+    info('[ TvProg ] is disposed ...');
+}
+
 exports.action = function (data, next) {
     info('[ TvProg ] is called ...', data);
     if (data.hasOwnProperty('update'))
@@ -60,16 +70,4 @@ exports.socket = function ( io, socket ) {
     socket.on('get-info', function (msg) {
         sendEpg(msg, function (sendClbk) { socket.emit('send-info', sendClbk);});
     });
-}
-
-// ------------------------------------------
-//  Plugin's functions
-// ------------------------------------------
-var sock;
-exports.init = function () {
-    info('[ TvProg ] is initializing ...');
-}
-
-exports.dispose = function () {
-    info('[ TvProg ] is disposed ...');
 }
