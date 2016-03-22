@@ -17,7 +17,6 @@ function writeXml (xmlClbk) {
         fs.writeFileSync ( file, writeXml, 'utf8' );
         xmlClbk('Ecriture des chaines: OK ...');
     });
-
 }
 
 function getEpg (epgFile) {
