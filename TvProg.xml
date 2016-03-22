@@ -58,10 +58,8 @@
 
 	<rule id="ruleChannels" scope="public">
 		<tag>out.action=new Object();</tag>
-		<one-of>
     	<!-- Automatic Generation § -->
     	<!-- § Automatic Generation -->
-		</one-of> 
 	</rule>
 
 </grammar>
