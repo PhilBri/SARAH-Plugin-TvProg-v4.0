@@ -1,0 +1,67 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice"  root="ruleTvProg" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+
+	<rule id="ruleTvProg" scope="public">
+		<tag>out.action=new Object(); </tag>
+		<item>Sarah</item>
+
+		<!-- Rules defs -->
+		<one-of>
+			<item><ruleref uri="#ruleUpdate"/><tag>out.action=rules.latest();</tag></item>
+			<item><ruleref uri="#ruleRequest"/><tag>out.action=rules.latest();</tag></item>
+		</one-of>
+
+		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/TvProg";</tag>
+	</rule>
+
+	<!-- Rules -->
+
+	<!-- Updates (channels & diffusions)-->
+	<rule id="ruleUpdate" scope="public">
+		<!--<tag>out.action=new Object();</tag>-->
+		<one-of>
+			<item>mets à jour</item>
+			<item>rafraîchis</item>
+		</one-of>
+		<one-of>
+			<item>les</item>
+			<item>la liste des</item>
+		</one-of>
+		<item><ruleref uri="#ruleChoice"/></item>
+	</rule>
+
+	<rule id="ruleChoice" scope="public">
+		<tag>out.action=new Object();</tag>
+		<tag>out.action.update="channels";</tag>
+		<one-of>
+			<item>chaînes</item>
+			<item>programmes</item>
+		</one-of>
+	</rule>
+
+	<!-- Requests -->
+	<rule id="ruleRequest" scope="public">
+		<!--<tag>out.action=new Object();</tag>-->
+		<one-of>
+			<item>quel est le programme</item>
+			<item>donne moi le programme</item>
+			<item>dis moi le programme</item>
+			<item>dis moi ce qu'il y a</item>
+			<item>qu'est ce qu'il y a</item>
+		</one-of>
+		<one-of>
+			<item>sur</item>
+			<item>de</item>
+		</one-of>
+		<item repeat="0-1">la</item>
+		<item><ruleref uri="#ruleChannels"/></item>
+	</rule>
+
+	<rule id="ruleChannels" scope="public">
+		<tag>out.action=new Object();</tag>
+		<one-of>
+    	<!-- Automatic Generation § -->
+    	<!-- § Automatic Generation -->
+		</one-of> 
+	</rule>
+
+</grammar>

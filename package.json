@@ -1,0 +1,13 @@
+{
+  "name": "TvProg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhilBri/SARAH-plugin-TvProg.git"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}

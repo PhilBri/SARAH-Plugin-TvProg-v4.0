@@ -1,0 +1,8 @@
+{
+  "modules" : { 
+    "TvProg"  : {
+      "description": "Programmes Tv",
+      "version": "4.0"
+    }
+  }
+}
