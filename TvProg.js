@@ -48,7 +48,6 @@ exports.action = function ( data, next ) {
         });
     else sendEpg({chnl: data.id, ico: data.img}, function (sendClbk) {
         next({ tts: 'actuellement sur la chaine' + data.id +'; ' + sendClbk.epgFile.title});
-        console.log(data.tts);
         sock.emit('send-info', sendClbk);
     });
 }

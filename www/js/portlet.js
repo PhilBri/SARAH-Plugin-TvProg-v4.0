@@ -10,7 +10,6 @@
     socket.emit('get-info', epgData);
 
     socket.on('send-info', function (msg) {
-      console.log(JSON.stringify(msg.epgData));
       $('#epgIcon').attr('src', "data:image/png;base64," + msg.epgIcon).css({'width':'126px', 'height':'71px'});
       $('.epgText').text(msg.epgFile.title);
       $('#epgPrev').attr('src', msg.epgFile.imageUrl).css({'width':'100%', 'height':'100%'});
