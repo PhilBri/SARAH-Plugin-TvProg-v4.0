@@ -1,6 +1,6 @@
 # <img src="../master/www/images/capture.png" width="50%" height="50%"/>
 
-TvProg
+#TvProg
 
 ***
 
@@ -21,7 +21,7 @@ Le portlet affiche :
 Use S.A.R.A.H. online **MarketPlace**, or download files from here and then, copy them into `..\SARAH\plugins\TvProg` directory.
 
 **Important**
-- Vous devez faire une mise à jour des chaines avec la commande '"SARAH met à jour les programmes"'' avant toute utilisation.
+- Vous devez faire une mise à jour des chaines avec la commande vocale 'SARAH met à jour les programmes' avant toute utilisation.
 
 ***
 
