@@ -18,7 +18,6 @@ function writeXml (xmlClbk) {
         fs.writeFileSync ( file, writeXml, 'utf8' );
         xmlClbk('Ecriture des chaines: OK');
     });
-
 }
 
 function getEpg (epgFile) {
@@ -66,7 +65,7 @@ exports.socket = function ( io, socket ) {
             socket.emit('send-info', sendClbk);
         });
     }).on('disconnect', function (socket) {
-        info('[ LiveboxRemote ] Disconnected from portlet.');
+        info('[ TvProg ] Disconnected from portlet.');
     });
 }
 
