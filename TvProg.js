@@ -4,19 +4,21 @@ function writeXml (xmlClbk) {
         file = __dirname + '\\' + 'TvProg.xml',
         xml  = fs.readFileSync ( file, 'utf8' ).replace( /§[^§]+§/gm, "§ -->\n<!-- §" ), // Deleting
         pos = xml.search( /<!-- §/gm ),
-        writeXml = xml.slice( 0, pos ),
-        end = xml.slice(pos),
-        tab  ='\n\t\t\t';
+        tab  ='\n\t\t\t',
+        writeXml = xml.slice( 0, pos ) + '\t\t<one-of>'+ tab,
+        end = xml.slice(pos);
+
     getEpg( function (epgFile) {
         epgFile = epgFile.channels.channel;
         for (var i= 0; i < epgFile.length; i++) {
             var tag = '<tag>out.action.id = "' + (i+1) + '"; out.action.img="' + epgFile[i].image + '";out.action.name="'+ epgFile[i].name+'";</tag>'
             writeXml = writeXml + tab + '<item>' + (i+1) + tag + '</item>' + tab + '<item>' + epgFile[i].name + tag +'</item>\n';
         }
-        writeXml = writeXml + tab + end;
+        writeXml = writeXml + '\n\t\t</one-of>'+ tab + end;
         fs.writeFileSync ( file, writeXml, 'utf8' );
         xmlClbk('Ecriture des chaines: OK');
     });
+
 }
 
 function getEpg (epgFile) {
@@ -64,7 +66,7 @@ exports.socket = function ( io, socket ) {
             socket.emit('send-info', sendClbk);
         });
     }).on('disconnect', function (socket) {
-        info('[ TvProg ] Disconnected from portlet.');
+        info('[ LiveboxRemote ] Disconnected from portlet.');
     });
 }
 
