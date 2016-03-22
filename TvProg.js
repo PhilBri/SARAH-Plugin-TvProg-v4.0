@@ -7,7 +7,6 @@ function writeXml (xmlClbk) {
         writeXml = xml.slice( 0, pos ),
         end = xml.slice(pos),
         tab  ='\n\t\t\t';
-
     getEpg( function (epgFile) {
         epgFile = epgFile.channels.channel;
         for (var i= 0; i < epgFile.length; i++) {
