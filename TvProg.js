@@ -15,7 +15,7 @@ function writeXml (xmlClbk) {
         }
         writeXml = writeXml + '\n\t\t</one-of>'+ tab + end;
         fs.writeFileSync ( file, writeXml, 'utf8' );
-        xmlClbk('Ecriture des chaines: OK');
+        xmlClbk('Ecriture des chaines: OK ...');
     });
 
 }
@@ -26,7 +26,7 @@ function getEpg (epgFile) {
         qs : {'api_token' : 'be906750a3cd20d6ddb47ec0b50e7a68', 'output' : 'json', 'withChannels' : '1'}
     };
     require('request') (options, function (err, response, body) {
-        !err && response.statusCode == 200 ? epgFile(JSON.parse(body)) : error('[ LiveboxRemote ]' + err);
+        !err && response.statusCode == 200 ? epgFile(JSON.parse(body)) : error('[ TvProg ]' + err);
     });
 }
 
@@ -38,7 +38,7 @@ function sendEpg (epgData, sendClbk) {
     });
 }
 
-exports.action = function ( data, next ) {
+exports.action = function (data, next) {
     info('[ TvProg ] is called ...', data);
     if (data.hasOwnProperty('update'))
         writeXml(function (xmlClbk) {
@@ -46,7 +46,7 @@ exports.action = function ( data, next ) {
             info('[ TvProg ] ',xmlClbk);
         });
     else sendEpg({chnl: data.id, ico: data.img}, function (sendClbk) {
-        next({ tts: 'actuellement sur la chaine' + data.id +'; ' + sendClbk.epgFile.title});
+        next({ tts: 'actuellement sur la chaine' + data.id +': ' + sendClbk.epgFile.title});
         sock.emit('send-info', sendClbk);
     });
 }
@@ -57,14 +57,9 @@ exports.cron = function ( next ) {
 
 exports.socket = function ( io, socket ) {
     sock = socket;
-    socket.on('tvprog', function ( msg ) {
-        info('[ TvProg ] %s ...', msg);
-    }).on('get-info', function (msg) {
-        sendEpg(msg, function (sendClbk) {
-            socket.emit('send-info', sendClbk);
-        });
-    }).on('disconnect', function (socket) {
-        info('[ TvProg ] Disconnected from portlet.');
+    socket.on('tvprog', function ( msg ) { info('[ TvProg ] %s ...', msg);});
+    socket.on('get-info', function (msg) {
+        sendEpg(msg, function (sendClbk) { socket.emit('send-info', sendClbk);});
     });
 }
 
