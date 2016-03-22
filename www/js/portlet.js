@@ -1,9 +1,4 @@
 !function ($) {
-  
-  // ------------------------------------------
-  //  REGISTER
-  // ------------------------------------------
-  
   var socket = false;
   var registerSocketIO = function () {
     var epgData = localStorage.getItem('epgData');
@@ -24,14 +19,9 @@
   }
   
   var register = function () {
-    //Register SocketIO
     registerSocketIO();
   }
 
-  // ------------------------------------------
-  //  PUBLIC
-  // ------------------------------------------
-  
   // Plugin initialization on DOM ready
   $(document).ready(function() {
     register();
