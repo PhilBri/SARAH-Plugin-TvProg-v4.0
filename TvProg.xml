@@ -14,10 +14,8 @@
 	</rule>
 
 	<!-- Rules -->
-
 	<!-- Updates (channels & diffusions)-->
 	<rule id="ruleUpdate" scope="public">
-		<!--<tag>out.action=new Object();</tag>-->
 		<one-of>
 			<item>mets à jour</item>
 			<item>rafraîchis</item>
@@ -37,10 +35,8 @@
 			<item>programmes</item>
 		</one-of>
 	</rule>
-
 	<!-- Requests -->
 	<rule id="ruleRequest" scope="public">
-		<!--<tag>out.action=new Object();</tag>-->
 		<one-of>
 			<item>quel est le programme</item>
 			<item>donne moi le programme</item>
@@ -59,7 +55,6 @@
 	<rule id="ruleChannels" scope="public">
 		<tag>out.action=new Object();</tag>
     	<!-- Automatic Generation § -->
-    	<!-- § Automatic Generation -->
+		<!-- § Automatic Generation -->
 	</rule>
-
 </grammar>
