@@ -12,7 +12,6 @@
 
 		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/TvProg";</tag>
 	</rule>
-
 	<!-- Rules -->
 	<!-- Updates (channels & diffusions)-->
 	<rule id="ruleUpdate" scope="public">
@@ -55,6 +54,6 @@
 	<rule id="ruleChannels" scope="public">
 		<tag>out.action=new Object();</tag>
     	<!-- Automatic Generation § -->
-		<!-- § Automatic Generation -->
+    	<!-- § Automatic Generation -->
 	</rule>
 </grammar>
