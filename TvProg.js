@@ -7,6 +7,7 @@ function writeXml (xmlClbk) {
         tab  ='\n\t\t\t',
         writeXml = xml.slice( 0, pos ) + '\t\t<one-of>'+ tab,
         end = xml.slice(pos);
+
     getEpg( function (epgFile) {
         epgFile = epgFile.channels.channel;
         for (var i= 0; i < epgFile.length; i++) {
@@ -48,20 +49,16 @@ exports.dispose = function () {
 }
 
 exports.action = function (data, next) {
-    info('[ TvProg ] is called ...', data);
+    info('[ TvProg ] is called ...');
     if (data.hasOwnProperty('update'))
         writeXml(function (xmlClbk) {
-            next({ tts: 'chaines actualisées'});
+            SARAH.speak('chaines actualisées');
             info('[ TvProg ] ',xmlClbk);
         });
     else sendEpg({chnl: data.id, ico: data.img}, function (sendClbk) {
-        next({ tts: 'actuellement sur la chaine' + data.id +': ' + sendClbk.epgFile.title});
+        SARAH.speak('actuellement sur la chaine' + data.id +': ' + sendClbk.epgFile.title);
         sock.emit('send-info', sendClbk);
     });
-}
-
-exports.cron = function ( next ) {
-    info('[ TvProg ] CRON is called ...');
 }
 
 exports.socket = function ( io, socket ) {
