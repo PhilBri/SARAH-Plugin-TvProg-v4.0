@@ -59,7 +59,7 @@ exports.action = function (data, next) {
         SARAH.speak('actuellement sur la chaine' + data.id +': ' + sendClbk.epgFile.title);
         sock.emit('send-info', sendClbk);
     });
-        next({ });
+    next({ });
 }
 
 exports.socket = function ( io, socket ) {
