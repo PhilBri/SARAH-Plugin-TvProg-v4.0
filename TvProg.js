@@ -1,8 +1,7 @@
-// Functions
 function writeXml (xmlClbk) {
     var fs = require('fs'),
         file = __dirname + '\\' + 'TvProg.xml',
-        xml  = fs.readFileSync ( file, 'utf8' ).replace( /§[^§]+§/gm, "§ -->\n<!-- §" ), // Deleting
+        xml  = fs.readFileSync ( file, 'utf8' ).replace( /§[^§]+§/gm, "§ -->\n<!-- §" ),
         pos = xml.search( /<!-- §/gm ),
         tab  ='\n\t\t\t',
         writeXml = xml.slice( 0, pos ) + '\t\t<one-of>'+ tab,
@@ -38,10 +37,9 @@ function sendEpg (epgData, sendClbk) {
     });
 }
 
-// Plugin
-var sock;
+var tvSocket;
 exports.init = function () {
-    info('[ TvProg ] is initializing ...');
+    info('[ TvProg ] is initializing ... (v%s)', Config.modules.TvProg.version);
 }
 
 exports.dispose = function () {
@@ -57,15 +55,19 @@ exports.action = function (data, next) {
         });
     else sendEpg({chnl: data.id, ico: data.img}, function (sendClbk) {
         SARAH.speak('actuellement sur la chaine' + data.id +': ' + sendClbk.epgFile.title);
-        sock.emit('send-info', sendClbk);
+        tvSocket.broadcast.emit('send-info', sendClbk);
     });
     next({ });
 }
 
 exports.socket = function ( io, socket ) {
-    sock = socket;
-    socket.on('tvprog', function ( msg ) { info('[ TvProg ] %s ...', msg);});
-    socket.on('get-info', function (msg) {
-        sendEpg(msg, function (sendClbk) { socket.emit('send-info', sendClbk);});
+    tvSocket = socket;
+    tvSocket.on('tvprog', function ( msg ) { 
+        info('[ TvProg ] %s ...', msg);
+    });
+    tvSocket.on('get-info', function (msg) {
+        sendEpg(msg, function (sendClbk) {
+            tvSocket.broadcast.emit('send-info', sendClbk);
+        });
     });
 }
