@@ -6,6 +6,7 @@
 
 ### SARAH vous annonce les programmes TV en cours...
 
+
 ***
 
 ## Description
@@ -15,6 +16,11 @@ Le portlet affiche :
 - La chaine demandée.
 - Un résumé du programme en cours.
 - Une vignette du programme (si disponible).
+
+## Bonus
+
+si vous avez installé le plugin `LiveboxRemote`, vous pourrez affiché la chaine du programme demandé via la commande vocale :
+- `SARAH {affiche, transfère, envoie} {le programme, la chaine} {sur, vers, a} {la box, la livebox}`
 
 ## Installation
 
