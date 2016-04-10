@@ -8,7 +8,6 @@ exports.init = function () {
 
 exports.action = function (data, next) {
     info('[ TvProg ] is called ... %s', data.name || data.lbsend);
-
     if (data.hasOwnProperty('update'))
         tvModule.writeXml(function (xmlClbk) {
             next({tts: 'chaines actualisées'});
@@ -16,7 +15,6 @@ exports.action = function (data, next) {
         });
     else {
         var sendData = data.hasOwnProperty('name') ? {chnl: data.id, ico: tvModule.allReplace(data.name.toLowerCase() + '.png')} : epgData;
-
         if (!sendData) return next({tts: 'chaine inconnue'});
 
         tvModule.sendEpg(sendData, function (sendClbk) {
@@ -38,7 +36,6 @@ exports.action = function (data, next) {
 exports.socket = function ( io, socket ) {
     io.of('/tvprog').on('connection', function (socket) {
         tvSocket = socket;
-        info('[ TvProg ] connected to portlet ...');
         tvSocket.on('tvprog', function ( msg ) { 
             info('[ TvProg ] %s ...', msg);
         });
