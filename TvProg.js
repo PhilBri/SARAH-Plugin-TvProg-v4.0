@@ -7,7 +7,7 @@ exports.init = function () {
 }
 
 exports.action = function (data, next) {
-    info('[ TvProg ] is called ... %s', data);
+    info('[ TvProg ] is called ... %s', data.name || data.lbsend);
 
     if (data.hasOwnProperty('update'))
         tvModule.writeXml(function (xmlClbk) {
