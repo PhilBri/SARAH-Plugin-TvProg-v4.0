@@ -7,7 +7,6 @@
     epgData = JSON.parse(localStorage.getItem('epgData'));
 
     tvSocket = io('/tvprog');
-    tvSocket.emit('tvprog', 'connected to portlet');
     tvSocket.emit('get-info', epgData);
 
     tvSocket.on('send-info', function (msg) {
