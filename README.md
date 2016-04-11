@@ -6,7 +6,6 @@
 
 ### SARAH vous annonce les programmes TV en cours...
 
-
 ***
 
 ## Description
@@ -17,21 +16,24 @@ Le portlet affiche :
 - Un résumé du programme en cours.
 - Une vignette du programme (si disponible).
 
+***
+
 ## Bonus
 
 si vous avez installé le plugin `LiveboxRemote`, vous pourrez affiché la chaine du programme demandé via la commande vocale :
 - `SARAH {affiche, transfère, envoie} {le programme, la chaine} {sur, vers, a} {la box, la livebox}`
 
+***
+
 ## Installation
 
-Use S.A.R.A.H. online **MarketPlace**, or download files from here and then, copy them into `..\SARAH\plugins\TvProg` directory.
+Utilisez le **MarketPlace** en-ligne, ou télécharger directement le plugin depuis cette page et, copiez les fichiers dans le répertoire `..\SARAH\plugins\TvProg`
 
 **Important**
 - Vous devez faire une mise à jour des chaines avec la commande vocale `SARAH met à jour les programmes` avant toute utilisation.
 
 ***
 
-<a name="important"></a>
 ## Important notes
 
 **Compatible versions:** 
