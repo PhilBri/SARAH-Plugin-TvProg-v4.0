@@ -2,7 +2,8 @@
   "modules" : { 
     "TvProg"  : {
       "description": "Programmes Tv",
-      "version": "4.0.1"
+      "version": "4.0.1",
+      "w": "2"
     }
   }
 }
